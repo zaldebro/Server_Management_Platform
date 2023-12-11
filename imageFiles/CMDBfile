@@ -1,0 +1,27 @@
+FROM centos:7
+
+ARG serverip
+
+ENV MySQLpwd='1qazcde3!@#' scriptPath="/usr/local/CMDB/script" htmlFilePath="/usr/local/CMDB/templates" LANG="en_US.UTF-8"
+
+ADD vsphere-automation-sdk-python-master.zip /usr/local
+
+RUN yum install -y python3 expect openssh-server openssh-clients unzip && \
+unzip /usr/local/vsphere-automation-sdk-python-master.zip -d /usr/local/ && \
+pip3 install --upgrade pip && \
+pip3 install -U pip setuptools && \
+pip3 install flask pymysql dbutils openpyxl requests redis apscheduler redis websockets paramiko && \
+pip3 install -U /usr/local/vsphere-automation-sdk-python-master/lib/*/*.whl && \
+pip3 install -U /usr/local/vsphere-automation-sdk-python-master.zip
+
+ADD CMDB.zip /usr/local/
+
+RUN unzip /usr/local/CMDB.zip -d /usr/local/ && \
+sed -i "s/localhost/${serverip}/g" ${htmlFilePath}/webshell.html && \
+sed -i "s/HostServer/${serverip}/g" /usr/local/CMDB/BP/Ssh.py && \
+sed -i "s/HostServer/${serverip}/g" /usr/local/CMDB/config.py && \
+sed -i "s/mysqlpwd/${MySQLpwd}/g" /usr/local/CMDB/config.py && \
+sed -i "s/HostServer/${serverip}/g" /usr/local/CMDB/script/sshOnly.sh && \
+rm -rf /usr/local/CMDB.zip /usr/local/vsphere-automation-sdk-python-master.zip
+
+CMD ["python3", "/usr/local/CMDB/app.py"]
