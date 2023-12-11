@@ -1,4 +1,3 @@
-[root@localhost cmdb]# cat subassembly.yaml
 version: "3"
 services:
 
