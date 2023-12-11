@@ -1,0 +1,37 @@
+[root@localhost cmdb]# cat subassembly.yaml
+version: "3"
+services:
+
+  mysql:
+    image: mysql:v1
+    build:
+      context: ./
+      dockerfile: MYSQLfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - "/cmdb/storage/mysql/conf:/etc/mysql/conf.d"
+      - "/cmdb/storage/mysql/data:/var/lib/mysql"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=hereisPassword"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - "/cmdb/storage/redis/data:/data"
+      - "/cmdb/storage/redis/redis.conf:/etc/redis/redis.conf"
+
+  shell:
+    image: myshell:v1
+    build:
+      context: ./
+      dockerfile: SHELLfile
+      args:
+        hostServer: 192.168.3.28
+        hostName: 192.168.3.28
+    ports:
+      - "8765:8765"
+    volumes:
+      - "/root/.ssh/:/root/.ssh/"
