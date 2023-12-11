@@ -693,7 +693,6 @@ appsecret = "xxx-xxx-xxxxx"
 
 # 在旧版钉钉中点击对应表单，processCode在url中
 processCode = "xxx-xxx-xxx-xx-xxx-xxx"
-# "dept_id": 865095136 研发中心
 
 # 初始化钉钉类，同一条消息一天只能发送一次
 dingding = DingDing(AGENT_ID=AGENT_ID, appkey=appkey, appsecret=appsecret, processCode=processCode)
@@ -702,8 +701,3 @@ dingding = DingDing(AGENT_ID=AGENT_ID, appkey=appkey, appsecret=appsecret, proce
 scheduler.add_job(func=corn_job, trigger='cron', hour='*/1', args=[FuZeRen], max_instances=6)
 # 处理服务器到期提醒，每天执行一次
 scheduler.add_job(func=serverinfo_job, trigger='cron', day='*/1', max_instances=2)
-# scheduler.add_job(func=serverinfo_job, trigger='cron', minute='*/10', max_instances=2)
-# # 处理虚拟机服务资产到期提醒，每天执行一次
-# scheduler.add_job(func=vmserverinfo_job, trigger='cron', day='*/1')
-# # 服务器免密测试，每天执行一次
-# # scheduler.add_job(func=sshTestJob, trigger='cron', day='*/1')
