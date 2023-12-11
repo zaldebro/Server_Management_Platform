@@ -2,10 +2,11 @@ FROM centos:7
 
 ARG serverip
 
-ENV MySQLpwd='1qazcde3!@#' scriptPath="/usr/local/CMDB/script" htmlFilePath="/usr/local/CMDB/templates" LANG="en_US.UTF-8"
+ENV MySQLpwd='password' scriptPath="/usr/local/CMDB/script" htmlFilePath="/usr/local/CMDB/templates" LANG="en_US.UTF-8"
 
 ADD vsphere-automation-sdk-python-master.zip /usr/local
 
+# 安装相关软件包
 RUN yum install -y python3 expect openssh-server openssh-clients unzip && \
 unzip /usr/local/vsphere-automation-sdk-python-master.zip -d /usr/local/ && \
 pip3 install --upgrade pip && \
@@ -16,6 +17,7 @@ pip3 install -U /usr/local/vsphere-automation-sdk-python-master.zip
 
 ADD CMDB.zip /usr/local/
 
+# 替换源码文件中的相关变量信息
 RUN unzip /usr/local/CMDB.zip -d /usr/local/ && \
 sed -i "s/localhost/${serverip}/g" ${htmlFilePath}/webshell.html && \
 sed -i "s/HostServer/${serverip}/g" /usr/local/CMDB/BP/Ssh.py && \
