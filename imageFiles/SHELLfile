@@ -6,11 +6,13 @@ ARG hostName
 
 ADD webshell.py /usr/local
 
+# 安装相关工具包
 RUN yum -y install python3 && \
 pip3 install --upgrade pip && \
 pip3 install -U pip setuptools && \
 pip3 install requests websockets paramiko
 
+# 替换源码文件相关变量信息
 RUN sed -i "s/hostServer/${hostServer}/g" /usr/local/webshell.py && \
 sed -i "s/hostName/${hostName}/g" /usr/local/webshell.py
 
