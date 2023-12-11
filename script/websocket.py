@@ -16,7 +16,7 @@ private_key = paramiko.RSAKey.from_private_key_file(sshFile)
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-
+# 需要注意长时间未使用、IP变化等信息
 async def echo(websocket, path, client):
     async for message in websocket:
         flag = True
