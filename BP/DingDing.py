@@ -71,7 +71,6 @@ class DingDing():
         res = requests.get(url)
         subDepartment = res.text
         subDepartment = json.loads(subDepartment)
-        # 研发中心 - 安全能力研发部 - 数据与能力中台研发部
         print("subList-->", subDepartment)
         subList = []
         for Department in subDepartment["department"]:
