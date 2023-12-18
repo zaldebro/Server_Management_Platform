@@ -44,7 +44,7 @@ confidentialityFreetoAll(){
   [[ -f ./unreachableHosts ]] && rm -f ./unreachableHosts
 
   # 设置分隔符，否则for循环读取出的数据不符合预期
-  #IFS=$'\n\n'
+  IFS=$'\n\n'
   # 使用MySQL数据库信息
   # for hostInfo in `mysql --skip-column-names -uroot -p'1qazcde3!@#' -e "select IP地址,密码 from CMDB.tablename;"`; do
 
