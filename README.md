@@ -1,4 +1,4 @@
-# CMDB   （[前往我的个人博客系统](http://121.40.86.134/)）
+# CMDB   （[前往我的个人博客系统](https://github.com/zaldebro/Personal_blog_system)）
 
 实习期间开发CMDB资产管理系统，主要功能如下：
 
