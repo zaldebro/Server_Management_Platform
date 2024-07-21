@@ -1,4 +1,4 @@
-# 服务器资产管理平台   （[前往我的个人博客系统](https://github.com/zaldebro/Personal_blog_system)）
+# 服务器资产管理平台
 
 实习期间开发服务器资产管理平台，主要功能如下：
 
