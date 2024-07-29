@@ -14,6 +14,9 @@
 
 BP目录放置了对接钉钉部分的代码、script部分放置了相关脚本
 
+界面类似下图
+![126-2](https://github.com/user-attachments/assets/c9bef54c-7282-44f6-8b74-d47735ece2b5)
+
 下面是容器版本部署：
 ```shell
 [root@localhost cmdb]# pwd
